@@ -9,9 +9,9 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title') - {{ (Auth::check() && (Auth::user()->role == 'student' || Auth::user()->role == 'teacher'
+    <title>@yield('title') {{ (Auth::check() && (Auth::user()->role == 'student' || Auth::user()->role == 'teacher'
         || Auth::user()->role == 'admin' || Auth::user()->role == 'accountant' || Auth::user()->role ==
-        'librarian'))?Auth::user()->school->name:'Laravel' }}</title>
+    'librarian')) ? '- ' . Auth::user()->school->name : '' }} - {{ env('APP_NAME', 'Laravel') }}</title>
     <style>
         .loader {
             position: fixed;
